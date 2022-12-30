@@ -1,10 +1,14 @@
 import React, { createContext, useContext, useState } from 'react';
 
+type User = {
+    name: string;
+};
+
 interface IStateContexProps {
-    user: any;
+    user: User;
     token: string | null;
     setToken: (token: string) => void;
-    setUser: React.Dispatch<React.SetStateAction<{}>>;
+    setUser: React.Dispatch<React.SetStateAction<User>>;
 }
 
 interface IContextProviderProps {
@@ -14,9 +18,9 @@ interface IContextProviderProps {
 const StateContext = createContext<IStateContexProps>({} as IStateContexProps);
 
 export const ContextProvider = ({ children }: IContextProviderProps) => {
-    const [user, setUser] = useState({});
-    // const [token, _setToken] = useState(localStorage.getItem("ACCESS_TOKEN"));
-    const [token, _setToken] = useState('123');
+    const [user, setUser] = useState({ name: 'Jhon' });
+    // const [token, _setToken] = useState(localStorage.getItem('ACCESS_TOKEN'));
+    const [token, _setToken] = useState<IStateContexProps['token']>(null);
 
     const setToken = (token: string) => {
         _setToken(token);
