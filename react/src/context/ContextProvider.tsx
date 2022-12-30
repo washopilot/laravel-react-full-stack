@@ -1,8 +1,8 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState } from 'react';
 
 interface IStateContexProps {
     user: any;
-    token: null | string;
+    token: string | null;
     setToken: (token: string) => void;
     setUser: React.Dispatch<React.SetStateAction<{}>>;
 }
@@ -11,23 +11,19 @@ interface IContextProviderProps {
     children: React.ReactNode;
 }
 
-const StateContext = createContext<IStateContexProps>({
-    user: null,
-    token: null,
-    setUser: () => {},
-    setToken: () => {},
-});
+const StateContext = createContext<IStateContexProps>({} as IStateContexProps);
 
 export const ContextProvider = ({ children }: IContextProviderProps) => {
     const [user, setUser] = useState({});
-    const [token, _setToken] = useState(localStorage.getItem("ACCESS_TOKEN"));
+    // const [token, _setToken] = useState(localStorage.getItem("ACCESS_TOKEN"));
+    const [token, _setToken] = useState('123');
 
     const setToken = (token: string) => {
         _setToken(token);
         if (token) {
-            localStorage.setItem("ACCESS_TOKEN", token);
+            localStorage.setItem('ACCESS_TOKEN', token);
         } else {
-            localStorage.removeItem("ACCESS_TOKEN");
+            localStorage.removeItem('ACCESS_TOKEN');
         }
     };
 
@@ -37,9 +33,8 @@ export const ContextProvider = ({ children }: IContextProviderProps) => {
                 user,
                 token,
                 setUser,
-                setToken,
-            }}
-        >
+                setToken
+            }}>
             {children}
         </StateContext.Provider>
     );

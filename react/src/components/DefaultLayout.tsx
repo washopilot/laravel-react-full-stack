@@ -3,6 +3,7 @@ import { useStateContext } from "../context/ContextProvider";
 
 const DefaultLayout = () => {
     const { user, token } = useStateContext();
+    console.log(token);
 
     if (!token) {
         return <Navigate to={"/login"} />;
@@ -10,7 +11,7 @@ const DefaultLayout = () => {
 
     return (
         <div>
-            Default
+            Default Layout
             <Outlet />
         </div>
     );
