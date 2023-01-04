@@ -5,7 +5,7 @@
     "useTabs": false,
     "singleQuote": true,
     "trailingCommaPHP": false,
-    "braceStyle": "1tbs",
+    "braceStyle": "per-cs",
     "trailingComma": "none",
     "bracketSameLine": true,
     "endOfLine": "lf"
